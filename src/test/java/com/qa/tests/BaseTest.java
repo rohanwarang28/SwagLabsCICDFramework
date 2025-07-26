@@ -46,7 +46,7 @@ public class BaseTest {
 
 
             } else if (AppConstants.platform.equalsIgnoreCase("remote_git")) {
-                chromeOptions.addArguments("--headless");
+                chromeOptions.addArguments("--headless=new");
                 chromeOptions.addArguments("--disable-gpu");
                 chromeOptions.addArguments("--no-sandbox");
                 chromeOptions.addArguments("--user-data-dir=/tmp/chrome-profile-" + System.nanoTime());
