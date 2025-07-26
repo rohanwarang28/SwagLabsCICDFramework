@@ -24,8 +24,8 @@ public class BaseTest {
 
     protected WebDriverWait wait;
     private static final ExtentReports reports = ExtentReportHelper.getReportObject();
-
-
+    ChromeOptions chromeOptions = new ChromeOptions();
+    FirefoxOptions firefoxOptions = new FirefoxOptions();
     @Parameters({"browserName"})
     @BeforeMethod
     public void setup(@Optional String browserName) throws IOException {
@@ -36,28 +36,41 @@ public class BaseTest {
             browser = browserName;
         }
 
-        if(browser.equalsIgnoreCase("chrome")){
-            if(AppConstants.platform.equalsIgnoreCase("local")) {
-                ChromeOptions chromeOptions = new ChromeOptions();
+        if(browser.equalsIgnoreCase("chrome")) {
+            if (AppConstants.platform.equalsIgnoreCase("local")) {
+
                 chromeOptions.addArguments("--incognito");
                 chromeOptions.addArguments("--disable-notifications");
                 chromeOptions.addArguments("--disable-save-password-bubble");
                 threadLocalDriver.set(new ChromeDriver(chromeOptions));
 
-                wait = new WebDriverWait(threadLocalDriver.get(), Duration.ofSeconds(30));
+
+            } else if (AppConstants.platform.equalsIgnoreCase("remote_git")) {
+                chromeOptions.addArguments("--headless");
+                chromeOptions.addArguments("--disable-gpu");
+                chromeOptions.addArguments("--no-sandbox");
+                threadLocalDriver.set(new ChromeDriver(chromeOptions));
             }
         }
         else if(browser.equalsIgnoreCase("firefox")){
             if(AppConstants.platform.equalsIgnoreCase(("local"))) {
-                FirefoxOptions firefoxOptions = new FirefoxOptions();
+
                 firefoxOptions.addArguments("--disable-notifications");
                 threadLocalDriver.set(new FirefoxDriver(firefoxOptions));
-                wait = new WebDriverWait(threadLocalDriver.get(), Duration.ofSeconds(30));
+
+            }
+            else if (AppConstants.platform.equalsIgnoreCase("remote_git"))
+            {
+                firefoxOptions.addArguments("--headless");
+                firefoxOptions.addArguments("--disable-gpu");
+                firefoxOptions.addArguments("--no-sandbox");
+                threadLocalDriver.set(new FirefoxDriver(firefoxOptions));
             }
         }
         else{
             System.out.println("browser name is not valid");
         }
+        wait = new WebDriverWait(threadLocalDriver.get(), Duration.ofSeconds(30));
         threadLocalDriver.get().get(Utilities.getDataConfig("appUrl"));
 
     }
