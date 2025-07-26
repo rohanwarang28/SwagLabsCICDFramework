@@ -28,7 +28,7 @@ public class BaseTest {
 
     @Parameters({"browserName"})
     @BeforeMethod
-    public void setup(String browserName) throws IOException {
+    public void setup(@Optional String browserName) throws IOException {
         if(browserName==null) {
             browser = AppConstants.browsername;
         }
