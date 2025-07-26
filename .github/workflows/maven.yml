@@ -44,8 +44,8 @@ jobs:
         -Dmaven.test.failure.ignore=true
       
     #Report generation and storage
-    -name: archieve report artifacts
-    uses: actions/upload-artifact@v3
-    with:
-      name: sparkHTML
-      path: ./reports/*.html
+    - name: archive report artifacts
+      uses: actions/upload-artifact@v3
+      with:
+        name: sparkHTML
+        path: ./reports/*.html
