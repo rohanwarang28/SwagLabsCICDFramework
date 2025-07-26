@@ -49,6 +49,7 @@ public class BaseTest {
                 chromeOptions.addArguments("--headless");
                 chromeOptions.addArguments("--disable-gpu");
                 chromeOptions.addArguments("--no-sandbox");
+                chromeOptions.addArguments("--user-data-dir=/tmp/chrome-profile-" + System.nanoTime());
                 threadLocalDriver.set(new ChromeDriver(chromeOptions));
             }
         }
