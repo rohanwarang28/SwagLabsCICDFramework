@@ -33,6 +33,7 @@ public class TestListener implements ITestListener {
     @Override
     public void onTestFailure(ITestResult result) {
         testLogger.get().generateLog(Status.FAIL,"Test "+result.getMethod().getMethodName()+" Failed");
+        testLogger.get().generateLog(Status.FAIL,"Test failed due to "+result.getThrowable());
         testLogger.get().log(Status.FAIL, MediaEntityBuilder.createScreenCaptureFromBase64String(BasePage.takeScreenShot()).build());
     }
 
