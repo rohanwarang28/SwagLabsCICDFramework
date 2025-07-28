@@ -23,7 +23,7 @@ public class HomePageTest extends BaseTest{
 
         List<String> expectedProductNames = new ArrayList<String>(actualProductNames);
         Collections.sort(expectedProductNames);
-        softAssert.assertEquals(actualProductNames,expectedProductNames,"The product names are not in sorted order");
+        softAssert.assertEquals(actualProductNames,expectedProductNames.add("invalid"),"The product names are not in sorted order");
 
         softAssert.assertAll();
     }

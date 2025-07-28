@@ -1,8 +1,6 @@
 package com.qa.pages;
 
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -11,7 +9,7 @@ import java.util.List;
 
 public class BasePage extends Page {
 
-    WebDriver driver;
+    static WebDriver driver;
 
 
     public BasePage(WebDriver driver){
@@ -59,5 +57,10 @@ public class BasePage extends Page {
 
     public List<WebElement> getWebElements(By byLocator){
         return wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(byLocator));
+    }
+
+    public static String takeScreenShot(){
+        String base64Img = ((TakesScreenshot)driver).getScreenshotAs(OutputType.BASE64);
+        return base64Img;
     }
 }

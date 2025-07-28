@@ -3,7 +3,9 @@ package Listeners;
 
 import com.aventstack.extentreports.ExtentReports;
 import com.aventstack.extentreports.ExtentTest;
+import com.aventstack.extentreports.MediaEntityBuilder;
 import com.aventstack.extentreports.Status;
+import com.qa.pages.BasePage;
 import org.testng.ITestContext;
 import org.testng.ITestListener;
 import org.testng.ITestResult;
@@ -31,6 +33,7 @@ public class TestListener implements ITestListener {
     @Override
     public void onTestFailure(ITestResult result) {
         testLogger.get().generateLog(Status.FAIL,"Test "+result.getMethod().getMethodName()+" Failed");
+        testLogger.get().log(Status.FAIL, MediaEntityBuilder.createScreenCaptureFromBase64String(BasePage.takeScreenShot()).build());
     }
 
     @Override
