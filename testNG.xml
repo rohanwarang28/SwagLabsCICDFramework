@@ -5,6 +5,7 @@
     </listeners>
     <test name="Test1">
         <parameter name="browserName" value="chrome"/>
+        <parameter name="platform" value="remote"/>
         <classes>
             <class name="com.qa.tests.LoginPageTest"></class>
         </classes>

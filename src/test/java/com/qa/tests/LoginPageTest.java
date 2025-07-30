@@ -15,7 +15,7 @@ public class LoginPageTest extends BaseTest{
         loginPage = new LoginPage(threadLocalDriver.get());
 
         homePage = loginPage.login("standard_user","secret_sauce");
-
+        Thread.sleep(5000);
         boolean isLoginSuccessful = homePage.verifyAppHeaderLogoIsDisplayed();
         softAssert.assertTrue(isLoginSuccessful,"Login is not successful");
         softAssert.assertAll();

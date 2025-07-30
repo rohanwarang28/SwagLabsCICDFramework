@@ -20,7 +20,7 @@ public class HomePageTest extends BaseTest{
         List<String> actualProductNames = homePage
                 .selectProductSortFilter("Name (A to Z)")
                 .getProductsList();
-
+        Thread.sleep(5000);
         List<String> expectedProductNames = new ArrayList<String>(actualProductNames);
         Collections.sort(expectedProductNames);
         softAssert.assertEquals(actualProductNames,expectedProductNames.add("invalid"),"The product names are not in sorted order");
